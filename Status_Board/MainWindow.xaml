@@ -1,0 +1,91 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Status_Board"
+        xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" x:Class="Status_Board.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid Margin="0">
+        <Label x:Name="label1" Content="A1" HorizontalAlignment="Left" Margin="108,102,40,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="label2" HorizontalAlignment="Left" Margin="238,102,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="pressA1" Content="" HorizontalAlignment="Left" Margin="108,170,40,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="pressA2" HorizontalAlignment="Left" Margin="238,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="label1_Copy" Content="Насос №" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Height="34" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="label1_Copy2" Content="Давление" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="dateA1" Content="" HorizontalAlignment="Left" Margin="1014,327,0,0" VerticalAlignment="Top" Height="36" Width="190" FontSize="14" Foreground="#FF080000" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0"/>
+        <Label x:Name="Время" Content="Время" HorizontalAlignment="Left" Margin="916,327,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="GraphButton" Content="График" HorizontalAlignment="Left" Margin="1209,327,0,0" VerticalAlignment="Top" Width="86" Height="37" Foreground="Black" BorderBrush="#FF14EBF5" OpacityMask="White" Background="#FF0CF2FD" FontSize="14" FontWeight="Bold" Click="GraphButton_Click"/>
+        <Wpf:CartesianChart x:Name="cartChart" Margin="10,0,10,10" Zoom="X" ZoomingSpeed="200" ScrollMode="X" IsManipulationEnabled="True" DisableAnimations="True" LegendLocation="Top" Hoverable="False" Focusable="True" Height="628" VerticalAlignment="Bottom">
+            <Wpf:CartesianChart.ChartLegend>
+                <Wpf:DefaultLegend/>
+            </Wpf:CartesianChart.ChartLegend>
+        </Wpf:CartesianChart>
+        <Label x:Name="label2_Copy" HorizontalAlignment="Left" Margin="360,102,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="pressA3" HorizontalAlignment="Left" Margin="360,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="label2_Copy1" HorizontalAlignment="Left" Margin="483,102,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="pressA4" HorizontalAlignment="Left" Margin="483,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="КОМПРЕССОРЫ" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="351" Height="69" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="ЦЕХА" HorizontalAlignment="Left" Margin="928,-3,0,0" VerticalAlignment="Top" Width="351" Height="68" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label x:Name="compressc" Content="" HorizontalAlignment="Left" Margin="1084,87,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy1" Content="Компрессорный" HorizontalAlignment="Left" Margin="918,87,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="ctfs_perezhimc" Content="" HorizontalAlignment="Left" Margin="1084,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy3" Content="ЦТФС-Пережим" HorizontalAlignment="Left" Margin="918,129,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="ctfs_pechc" Content="" HorizontalAlignment="Left" Margin="1084,169,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy4" Content="ЦТФС-Печь" HorizontalAlignment="Left" Margin="918,169,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="ctfs_reznoec" Content="" HorizontalAlignment="Left" Margin="1084,211,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy5" Content="ЦТФС-Резное" HorizontalAlignment="Left" Margin="918,211,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="dsc_galc" Content="" HorizontalAlignment="Left" Margin="1084,251,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy6" Content="ДСЦ-Галерея" HorizontalAlignment="Left" Margin="918,251,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="dsc_rampc" Content="" HorizontalAlignment="Left" Margin="1482,87,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy7" Content="ДСЦ-Рампа" HorizontalAlignment="Left" Margin="1316,87,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="dsc_drobc" Content="" HorizontalAlignment="Left" Margin="1482,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy8" Content="ДСЦ-Дробильня" HorizontalAlignment="Left" Margin="1316,129,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="dsc_shihtac" Content="" HorizontalAlignment="Left" Margin="1482,169,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy9" Content="ДСЦ-Шихта" HorizontalAlignment="Left" Margin="1316,169,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="hc" Content="" HorizontalAlignment="Left" Margin="1482,211,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy10" Content="Водородная" HorizontalAlignment="Left" Margin="1316,211,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="azotc" Content="" HorizontalAlignment="Left" Margin="1482,251,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
+        <Label x:Name="label1_Copy11" Content="Азотная" HorizontalAlignment="Left" Margin="1316,251,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Slider HorizontalAlignment="Left" Margin="113,306,0,0" VerticalAlignment="Top" Height="23" Width="117" Maximum="100" Value="-1">
+            <Slider.CacheMode>
+                <BitmapCache/>
+            </Slider.CacheMode>
+        </Slider>
+        <CheckBox x:Name="compressch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,95,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ctfs_perezhimch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,137,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ctfs_pechch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,177,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ctfs_reznoech" Content="Отображать" HorizontalAlignment="Left" Margin="1170,219,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dsc_galch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,259,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dsc_rampch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,99,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dsc_drobch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,139,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="dsc_shihtach" Content="Отображать" HorizontalAlignment="Left" Margin="1568,181,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="hch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,221,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="azotch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,263,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="108,247,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="238,247,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,1.267"/>
+        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="360,247,0,0" VerticalAlignment="Top"/>
+        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="483,247,0,0" VerticalAlignment="Top"/>
+        <Slider HorizontalAlignment="Left" Margin="238,306,0,0" VerticalAlignment="Top" Height="23" Width="118" Maximum="100" Value="-1">
+            <Slider.CacheMode>
+                <BitmapCache/>
+            </Slider.CacheMode>
+        </Slider>
+        <Slider HorizontalAlignment="Left" Margin="360,306,0,0" VerticalAlignment="Top" Height="23" Width="118" Maximum="100" Value="-1">
+            <Slider.CacheMode>
+                <BitmapCache/>
+            </Slider.CacheMode>
+        </Slider>
+        <Slider HorizontalAlignment="Left" Margin="483,306,0,0" VerticalAlignment="Top" Height="23" Width="117" Maximum="100" Value="-1">
+            <Slider.CacheMode>
+                <BitmapCache/>
+            </Slider.CacheMode>
+        </Slider>
+        <Label x:Name="label1_Copy12" Content="Работа" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="label1_Copy13" Content="Мощьность" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Height="36" Width="98" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+
+
+
+    </Grid>
+</Window>
