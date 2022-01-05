@@ -181,11 +181,20 @@ namespace Status_Board
             SeriesCollection series = new SeriesCollection();
 
             cartChart.AxisX.Clear();
+            cartChart.AxisY.Clear();
             cartChart.AxisX.Add(new Axis
             {
 
-                Title = "Даты и время",
-                Labels = dates
+                Title = "Дата и время",
+                Labels = dates,
+                MinValue = 0,
+                MaxValue = 100
+
+            }) ; 
+            cartChart.AxisY.Add(new Axis
+            {
+
+                Title = "Давление",
 
             }) ;
            
@@ -333,8 +342,22 @@ namespace Status_Board
             }
             
             cartChart.Series = series;
+            cartChart.AxisX[0].MinValue = dates.Count - 100;
+            cartChart.AxisX[0].MaxValue = dates.Count + 100;
+
         }
 
-        
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            cartChart.AxisX[0].MinValue -= 100;
+            cartChart.AxisX[0].MaxValue -= 100;
+        }
+
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            cartChart.AxisX[0].MinValue += 100;
+            cartChart.AxisX[0].MaxValue += 100;
+        }
     }
 }

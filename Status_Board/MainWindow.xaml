@@ -84,6 +84,8 @@
         </Slider>
         <Label x:Name="label1_Copy12" Content="Работа" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label1_Copy13" Content="Мощьность" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Height="36" Width="98" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="Back" Content="Назад" HorizontalAlignment="Left" Margin="1316,343,0,0" VerticalAlignment="Top" Width="75" FontSize="11" Click="Back_Click" Background="#7FFFF300"/>
+        <Button x:Name="Next" Content="Вперед" HorizontalAlignment="Left" Margin="1402,343,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,0.8" FontSize="11" Click="Next_Click" Background="#7FFFF300"/>
 
 
 
