@@ -33,9 +33,10 @@ namespace Status_Board
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
 
             timer.Tick += new EventHandler(timerTick);
+            timer.Tick += new EventHandler(timerChart);
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
-
+          
         }
         public void ExitApp(object sender, ExitEventArgs e)
         {
@@ -69,6 +70,8 @@ namespace Status_Board
             double dsc_shihta = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) -1, 2);
 
             Departments(azot, h, compress, ctfs_pech, ctfs_perezhim, ctfs_reznoe, dsc_gal, dsc_ramp, dsc_drob, dsc_shihta);
+
+            
         }
 
         public void Departments(double azot, double h, double compress, double ctfs_pech, double ctfs_perezhim, 
@@ -115,27 +118,30 @@ namespace Status_Board
             string query = "INSERT A1(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A1'," + Convert.ToString(A1).Replace(",", ".") + ")"+";" 
                          + "INSERT A2(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A2'," + Convert.ToString(A2).Replace(",", ".") + ")"+";" 
                          + "INSERT A3(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A3'," + Convert.ToString(A3).Replace(",", ".") + ")"+";" 
-                         + "INSERT A4(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A4'," + Convert.ToString(A4).Replace(",", ".") + ")";
-            
+                         + "INSERT A4(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A4'," + Convert.ToString(A4).Replace(",", ".") + ")";          
 
             // Создаем объект SqlDbCommand для выполнения запроса к БД 
             SqlCommand command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
            
-
-
             //Вывод времени на экран
             string datequery = "SELECT SYSDATETIME() FROM A1";
             SqlCommand command3 = new SqlCommand(datequery, connection);
             dateA1.Content = command3.ExecuteScalar().ToString();
         }
 
-        private void GraphButton_Click(object sender, RoutedEventArgs e)
+        public void GraphButton_Click(object sender, RoutedEventArgs e)
         {
 
+            LiveChart();
+
+        }
+      
+        public void LiveChart()
+        {
+            
             string query = "SELECT DATETIME, Compress, CTFS_Pech, CTFS_Perezhim, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT FROM Departments";
-            
-            
+
             List<string> dates = new List<string>();
             ChartValues<double> compress = new ChartValues<double>();
             ChartValues<double> ctfs_pech = new ChartValues<double>();
@@ -167,17 +173,9 @@ namespace Status_Board
 
             }
             reader.Close();
-            
-            LiveChart(dates, compress, ctfs_pech, ctfs_perezhim, ctfs_reznoe, dsc_gal, dsc_ramp, dsc_drob, dsc_shihta, h, azot);
 
             
 
-        }
-
-        public void LiveChart(List<string> dates, ChartValues<double> compress, ChartValues<double> ctfs_pech, 
-            ChartValues<double> ctfs_perezhim, ChartValues<double> ctfs_reznoe, ChartValues<double> dsc_gal, ChartValues<double> dsc_ramp,
-            ChartValues<double> dsc_drob, ChartValues<double> dsc_shihta, ChartValues<double> h, ChartValues<double> azot)
-        {
             SeriesCollection series = new SeriesCollection();
 
             cartChart.AxisX.Clear();
@@ -340,10 +338,11 @@ namespace Status_Board
             {
                 series.Add(line_azot);
             }
-            
+
             cartChart.Series = series;
             cartChart.AxisX[0].MinValue = dates.Count - 100;
             cartChart.AxisX[0].MaxValue = dates.Count + 100;
+
 
         }
 
@@ -358,6 +357,14 @@ namespace Status_Board
         {
             cartChart.AxisX[0].MinValue += 100;
             cartChart.AxisX[0].MaxValue += 100;
+        }
+
+        public void timerChart(object sender, EventArgs e) 
+        {
+            if (run.IsChecked.Equals(true))
+            {
+                LiveChart();
+            }
         }
     }
 }
