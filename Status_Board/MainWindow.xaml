@@ -14,9 +14,9 @@
         <Label x:Name="pressA2" HorizontalAlignment="Left" Margin="238,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="label1_Copy" Content="Насос №" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Height="34" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label1_Copy2" Content="Давление" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dateA1" Content="" HorizontalAlignment="Left" Margin="1014,327,0,0" VerticalAlignment="Top" Height="36" Width="190" FontSize="14" Foreground="#FF080000" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0"/>
-        <Label x:Name="Время" Content="Время" HorizontalAlignment="Left" Margin="916,327,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="GraphButton" Content="График" HorizontalAlignment="Left" Margin="1209,327,0,0" VerticalAlignment="Top" Width="86" Height="37" Foreground="Black" BorderBrush="#FF14EBF5" OpacityMask="White" Background="#FF0CF2FD" FontSize="14" FontWeight="Bold" Click="GraphButton_Click"/>
+        <Label x:Name="dateA1" Content="" HorizontalAlignment="Left" Margin="1016,325,0,0" VerticalAlignment="Top" Height="36" Width="190" FontSize="14" Foreground="#FF080000" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0"/>
+        <Label x:Name="Время" Content="Время" HorizontalAlignment="Left" Margin="918,325,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="GraphButton" Content="График" HorizontalAlignment="Left" Margin="1214,325,0,0" VerticalAlignment="Top" Width="86" Height="37" Foreground="Black" BorderBrush="#FF14EBF5" OpacityMask="White" Background="#FF0CF2FD" FontSize="14" FontWeight="Bold" Click="GraphButton_Click"/>
         <Wpf:CartesianChart x:Name="cartChart" Margin="10,0,10,10" Zoom="X" ZoomingSpeed="200" ScrollMode="X" IsManipulationEnabled="True" DisableAnimations="True" LegendLocation="Top" Hoverable="False" Focusable="True" Height="628" VerticalAlignment="Bottom">
             <Wpf:CartesianChart.ChartLegend>
                 <Wpf:DefaultLegend/>
@@ -26,8 +26,8 @@
         <Label x:Name="pressA3" HorizontalAlignment="Left" Margin="360,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="label2_Copy1" HorizontalAlignment="Left" Margin="483,102,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="pressA4" HorizontalAlignment="Left" Margin="483,170,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="КОМПРЕССОРЫ" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="351" Height="69" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Content="ЦЕХА" HorizontalAlignment="Left" Margin="928,-3,0,0" VerticalAlignment="Top" Width="351" Height="68" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="КОМПРЕССОРЫ" HorizontalAlignment="Left" Margin="51,11,0,0" VerticalAlignment="Top" Width="351" Height="69" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="ЦЕХА" HorizontalAlignment="Left" Margin="1014,11,0,0" VerticalAlignment="Top" Width="351" Height="68" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label x:Name="compressc" Content="" HorizontalAlignment="Left" Margin="1084,87,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
         <Label x:Name="label1_Copy1" Content="Компрессорный" HorizontalAlignment="Left" Margin="918,87,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="ctfs_perezhimc" Content="" HorizontalAlignment="Left" Margin="1084,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0"/>
@@ -84,10 +84,14 @@
         </Slider>
         <Label x:Name="label1_Copy12" Content="Работа" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label1_Copy13" Content="Мощьность" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Height="36" Width="98" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="Back" Content="Назад" HorizontalAlignment="Left" Margin="1316,343,0,0" VerticalAlignment="Top" Width="75" FontSize="11" Click="Back_Click" Background="#7FFFF300"/>
-        <Button x:Name="Next" Content="Вперед" HorizontalAlignment="Left" Margin="1402,343,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,0.8" FontSize="11" Click="Next_Click" Background="#7FFFF300"/>
+        <Button x:Name="Back" Content="Назад" HorizontalAlignment="Left" Margin="1316,343,0,0" VerticalAlignment="Top" Width="75" FontSize="11" Click="Back_Click" Background="#7F09F113"/>
+        <Button x:Name="Next" Content="Вперед" HorizontalAlignment="Left" Margin="1402,343,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,0.8" FontSize="11" Click="Next_Click" Background="#7F09F113"/>
         <CheckBox x:Name="run" Content="Вкл автообновление графика" HorizontalAlignment="Left" Margin="1568,343,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="zoomb" HorizontalAlignment="Left" Height="23" Margin="1568,312,0,0" TextWrapping="Wrap" Text="Вид" VerticalAlignment="Top" Width="53" UndoLimit="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="fullg" Content="Полный график" HorizontalAlignment="Left" Margin="1568,323,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cal" Content="" HorizontalAlignment="Left" Margin="1688,247,0,0" VerticalAlignment="Top" Width="179"/>
+        <Calendar x:Name="calendar" HorizontalAlignment="Left" Margin="1688,86,0,0" VerticalAlignment="Top" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
+        <CheckBox x:Name="datecheck" Content="Строить по дате" HorizontalAlignment="Left" Margin="1688,272,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="cal2" Content="" HorizontalAlignment="Left" Margin="1688,287,0,0" VerticalAlignment="Top" Width="179"/>
 
 
 

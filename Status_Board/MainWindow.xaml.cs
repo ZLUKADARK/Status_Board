@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 
 using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Status_Board
 {
@@ -17,13 +18,13 @@ namespace Status_Board
 
     {
         public static string connectString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Status_Board;Integrated Security=True";
-        SqlConnection connection = new SqlConnection(connectString);
+        readonly SqlConnection connection = new SqlConnection(connectString);
 
         static Random rand = new Random();
-        
-        
+        string caldate;
 
-        
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace Status_Board
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
           
+        
         }
         public void ExitApp(object sender, ExitEventArgs e)
         {
@@ -139,8 +141,10 @@ namespace Status_Board
       
         public void LiveChart()
         {
-            
-            string query = "SELECT DATETIME, Compress, CTFS_Pech, CTFS_Perezhim, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT FROM Departments";
+
+            string query1 ="SELECT DATETIME, Compress, CTFS_Pech, CTFS_Perezhim, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT FROM Departments";
+            string query2 = "SELECT DATETIME, Compress, CTFS_Pech, CTFS_Perezhim, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT FROM Departments where convert(date, DATETIME) = ' " + caldate + "'";
+           
 
             List<string> dates = new List<string>();
             ChartValues<double> compress = new ChartValues<double>();
@@ -155,45 +159,63 @@ namespace Status_Board
             ChartValues<double> azot = new ChartValues<double>();
 
             //Получаем результаты времени
-            SqlCommand com = new SqlCommand(query, connection);
-            SqlDataReader reader = com.ExecuteReader();
-            while (reader.Read())
+            if (datecheck.IsChecked.Equals(false))
             {
-                dates.Add(Convert.ToString(reader.GetDateTime(0)));
-                compress.Add((double)reader.GetDecimal(1));
-                ctfs_pech.Add((double)reader.GetDecimal(2));
-                ctfs_perezhim.Add((double)reader.GetDecimal(3));
-                ctfs_reznoe.Add((double)reader.GetDecimal(4));
-                dsc_gal.Add((double)reader.GetDecimal(5));
-                dsc_ramp.Add((double)reader.GetDecimal(6));
-                dsc_drob.Add((double)reader.GetDecimal(7));
-                dsc_shihta.Add((double)reader.GetDecimal(8));
-                h.Add((double)reader.GetDecimal(9));
-                azot.Add((double)reader.GetDecimal(10));
+                SqlCommand com = new SqlCommand(query1, connection);
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    dates.Add(Convert.ToString(reader.GetDateTime(0)));
+                    compress.Add((double)reader.GetDecimal(1));
+                    ctfs_pech.Add((double)reader.GetDecimal(2));
+                    ctfs_perezhim.Add((double)reader.GetDecimal(3));
+                    ctfs_reznoe.Add((double)reader.GetDecimal(4));
+                    dsc_gal.Add((double)reader.GetDecimal(5));
+                    dsc_ramp.Add((double)reader.GetDecimal(6));
+                    dsc_drob.Add((double)reader.GetDecimal(7));
+                    dsc_shihta.Add((double)reader.GetDecimal(8));
+                    h.Add((double)reader.GetDecimal(9));
+                    azot.Add((double)reader.GetDecimal(10));
 
+                }
+                reader.Close();
             }
-            reader.Close();
+            else
+            {
+                SqlCommand com = new SqlCommand(query2, connection);
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    dates.Add(Convert.ToString(reader.GetDateTime(0)));
+                    compress.Add((double)reader.GetDecimal(1));
+                    ctfs_pech.Add((double)reader.GetDecimal(2));
+                    ctfs_perezhim.Add((double)reader.GetDecimal(3));
+                    ctfs_reznoe.Add((double)reader.GetDecimal(4));
+                    dsc_gal.Add((double)reader.GetDecimal(5));
+                    dsc_ramp.Add((double)reader.GetDecimal(6));
+                    dsc_drob.Add((double)reader.GetDecimal(7));
+                    dsc_shihta.Add((double)reader.GetDecimal(8));
+                    h.Add((double)reader.GetDecimal(9));
+                    azot.Add((double)reader.GetDecimal(10));
 
-            
+                }
+                reader.Close();
+            }
 
             SeriesCollection series = new SeriesCollection();
 
             cartChart.AxisX.Clear();
             cartChart.AxisY.Clear();
+
             cartChart.AxisX.Add(new Axis
             {
-
                 Title = "Дата и время",
-                Labels = dates,
-                MinValue = 0,
-                MaxValue = 100
-
+                Labels = dates
             }) ; 
+
             cartChart.AxisY.Add(new Axis
             {
-
                 Title = "Давление",
-
             }) ;
            
             //Линия компрессоров
@@ -340,31 +362,46 @@ namespace Status_Board
             }
 
             cartChart.Series = series;
+
+            //Чек бокс для регулеровки вида "Полный график"
+            if (fullg.IsChecked.Equals(false)) { 
+            cartChart.AxisX[0].MinValue = 0;
+            cartChart.AxisX[0].MaxValue = 100;
             cartChart.AxisX[0].MinValue = dates.Count - 100;
             cartChart.AxisX[0].MaxValue = dates.Count + 100;
-
+            }
+            
 
         }
 
-
+        //Кнопка назад
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             cartChart.AxisX[0].MinValue -= 100;
             cartChart.AxisX[0].MaxValue -= 100;
         }
-
+        //Кнопка вперед
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             cartChart.AxisX[0].MinValue += 100;
             cartChart.AxisX[0].MaxValue += 100;
+            cal2.Content = caldate;
         }
-
-        public void timerChart(object sender, EventArgs e) 
+        //Таймер для постройки графика
+        private void timerChart(object sender, EventArgs e) 
         {
             if (run.IsChecked.Equals(true))
             {
                 LiveChart();
             }
         }
+        
+        public void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime selectedDate = calendar.SelectedDate.Value;
+            caldate = selectedDate.ToString("yyyy-MM-dd");
+            cal.Content = caldate;
+        }
+
     }
 }
