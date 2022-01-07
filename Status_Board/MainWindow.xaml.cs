@@ -21,8 +21,8 @@ namespace Status_Board
         readonly SqlConnection connection = new SqlConnection(connectString);
 
         static Random rand = new Random();
-        string caldate;
-
+        static string caldate;
+        int res;
 
 
         public MainWindow()
@@ -44,11 +44,10 @@ namespace Status_Board
         {
             // заркываем соединение с БД
             connection.Close();
-
+            cartChart.AxisX.Clear();
+            cartChart.AxisY.Clear();
         }
 
-
-        
 
         public void timerTick(object sender, EventArgs e)
         {
@@ -115,7 +114,7 @@ namespace Status_Board
             pressA2.Content = A2;
             pressA3.Content = A3;
             pressA4.Content = A4;
-
+       
             //Строка запроса
             string query = "INSERT A1(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A1'," + Convert.ToString(A1).Replace(",", ".") + ")"+";" 
                          + "INSERT A2(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A2'," + Convert.ToString(A2).Replace(",", ".") + ")"+";" 
@@ -217,11 +216,11 @@ namespace Status_Board
             {
                 Title = "Давление",
             }) ;
-           
-            //Линия компрессоров
+
+            //Линия Компрессорный
             LineSeries line_compress = new LineSeries
             {
-                Title = "Компрессорная",
+                Title = "Компрессорный",
                 Values = compress,
                 Fill = Brushes.Transparent,
                 StrokeThickness = .4,
@@ -239,10 +238,10 @@ namespace Status_Board
                 PointGeometrySize = 0,
                 DataLabels = false
             };
-            //Линия ЦТФС-Прежим
+            //Линия ЦТФС-Пережим
             LineSeries line_ctfs_perezhim = new LineSeries
             {
-                Title = "ЦТФС-Прежим",
+                Title = "ЦТФС-Пережим",
                 Values = ctfs_perezhim,
                 Fill = Brushes.Transparent,
                 StrokeThickness = .4,
@@ -279,10 +278,10 @@ namespace Status_Board
                 PointGeometrySize = 0,
                 DataLabels = false
             };
-            //Линия ДСЦ-Дробильня
+            //Линия ДСЦ-Дробильный
             LineSeries line_dsc_drob = new LineSeries
             {
-                Title = "ДСЦ-Дробильня",
+                Title = "ДСЦ-Дробильный",
                 Values = dsc_drob,
                 Fill = Brushes.Transparent,
                 StrokeThickness = .4,
@@ -299,20 +298,20 @@ namespace Status_Board
                 PointGeometrySize = 0,
                 DataLabels = false
             };
-            //Линия Водород
+            //Линия Водородный
             LineSeries line_h = new LineSeries
             {
-                Title = "Водород",
+                Title = "Водородный",
                 Values = h,
                 Fill = Brushes.Transparent,
                 StrokeThickness = .4,
                 PointGeometrySize = 0,
                 DataLabels = false
             };
-            //Линия Азот
+            //Линия Азотный
             LineSeries line_azot = new LineSeries
             {
-                Title = "Азот",
+                Title = "Азотный",
                 Values = azot,
                 Fill = Brushes.Transparent,
                 StrokeThickness = .4,
@@ -362,13 +361,13 @@ namespace Status_Board
             }
 
             cartChart.Series = series;
-
+            
             //Чек бокс для регулеровки вида "Полный график"
             if (fullg.IsChecked.Equals(false)) { 
             cartChart.AxisX[0].MinValue = 0;
-            cartChart.AxisX[0].MaxValue = 100;
-            cartChart.AxisX[0].MinValue = dates.Count - 100;
-            cartChart.AxisX[0].MaxValue = dates.Count + 100;
+            cartChart.AxisX[0].MaxValue = resg.Value;
+            cartChart.AxisX[0].MinValue = dates.Count - resg.Value;
+            cartChart.AxisX[0].MaxValue = dates.Count + resg.Value;
             }
             
 
@@ -385,7 +384,6 @@ namespace Status_Board
         {
             cartChart.AxisX[0].MinValue += 100;
             cartChart.AxisX[0].MaxValue += 100;
-            cal2.Content = caldate;
         }
         //Таймер для постройки графика
         private void timerChart(object sender, EventArgs e) 
@@ -400,7 +398,6 @@ namespace Status_Board
         {
             DateTime selectedDate = calendar.SelectedDate.Value;
             caldate = selectedDate.ToString("yyyy-MM-dd");
-            cal.Content = caldate;
         }
 
     }
