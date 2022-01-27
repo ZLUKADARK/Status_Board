@@ -22,7 +22,6 @@ namespace Status_Board
 
         static Random rand = new Random();
         static string caldate;
-        int res;
 
 
         public MainWindow()
@@ -30,15 +29,20 @@ namespace Status_Board
             InitializeComponent();
             
             connection.Open();
+            
+            System.Windows.Threading.DispatcherTimer timer2 = new System.Windows.Threading.DispatcherTimer();
+            timer2.Tick += new EventHandler(switchCompressor);
+            timer2.Interval = new TimeSpan(0, 0, 1);
+            timer2.Start();
 
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-
             timer.Tick += new EventHandler(timerTick);
             timer.Tick += new EventHandler(timerChart);
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
-          
-        
+
+
+
         }
         public void ExitApp(object sender, ExitEventArgs e)
         {
@@ -49,19 +53,61 @@ namespace Status_Board
         }
 
 
+        public void switchCompressor(object sender, EventArgs e)
+        {
+            if (a1check.IsChecked.Equals(false))
+            {
+                a1slide.Value = 0;
+                a1slide.IsEnabled = false;
+            }
+            else
+            {
+                a1slide.IsEnabled = true;
+            }
+            if (a2check.IsChecked.Equals(false))
+            {
+                a2slide.Value = 0;
+                a2slide.IsEnabled = false;
+            }
+            else
+            {
+                a2slide.IsEnabled = true;
+            }
+            if (a3check.IsChecked.Equals(false))
+            {
+                a3slide.Value = 0;
+                a3slide.IsEnabled = false;
+            }
+            else
+            {
+                a3slide.IsEnabled = true;
+            }
+            if (a4check.IsChecked.Equals(false))
+            {
+                a4slide.Value = 0;
+                a4slide.IsEnabled = false;
+            }
+            else
+            {
+                a4slide.IsEnabled = true;
+            }
+        }
+
         public void timerTick(object sender, EventArgs e)
         {
             //Значение компрессоров
-            double A1 = Math.Round((rand.NextDouble() * (10 - 0) + 0), 2);
-            double A2 = Math.Round((rand.NextDouble() * (10 - 0) + 0), 2);
-            double A3 = Math.Round((rand.NextDouble() * (10 - 0) + 0), 2);
-            double A4 = Math.Round((rand.NextDouble() * (10 - 0) + 0), 2);
+            double A1 = a1slide.Value;
+            double A2 = a2slide.Value;
+            double A3 = a3slide.Value;
+            double A4 = a4slide.Value;
+
+            
             Compressor(A1, A2, A3, A4);
 
             //Значение давления в цехах
             double azot = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) - 1, 2);
             double h = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) - 1, 2);
-            double compress = A1 + A2 + A3 + A4; 
+            double compress = Math.Round((A1 + A2 + A3 + A4), 4); 
             double ctfs_pech = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) - 1, 2);
             double ctfs_perezhim = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) - 1, 2);
             double ctfs_reznoe = Math.Round(((rand.NextDouble() * (10 - 0) + 0)) - 1, 2);
@@ -376,14 +422,14 @@ namespace Status_Board
         //Кнопка назад
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            cartChart.AxisX[0].MinValue -= 100;
-            cartChart.AxisX[0].MaxValue -= 100;
+            cartChart.AxisX[0].MinValue -= resg.Value;
+            cartChart.AxisX[0].MaxValue -= resg.Value;
         }
         //Кнопка вперед
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            cartChart.AxisX[0].MinValue += 100;
-            cartChart.AxisX[0].MaxValue += 100;
+            cartChart.AxisX[0].MinValue += resg.Value;
+            cartChart.AxisX[0].MaxValue += resg.Value;
         }
         //Таймер для постройки графика
         private void timerChart(object sender, EventArgs e) 
@@ -400,5 +446,24 @@ namespace Status_Board
             caldate = selectedDate.ToString("yyyy-MM-dd");
         }
 
+        private void a1check_Checked(object sender, RoutedEventArgs e)
+        {
+                
+        }
+
+        private void a2check_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void a3check_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void a4check_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

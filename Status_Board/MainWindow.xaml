@@ -48,7 +48,7 @@
         <Label x:Name="label1_Copy10" Content="Водородный" HorizontalAlignment="Left" Margin="1316,211,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="azotc" Content="" HorizontalAlignment="Left" Margin="1482,251,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
         <Label x:Name="label1_Copy11" Content="Азотный" HorizontalAlignment="Left" Margin="1316,251,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Slider HorizontalAlignment="Left" Margin="113,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Maximum="100" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
+        <Slider x:Name="a1slide" HorizontalAlignment="Left" Margin="113,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
@@ -63,21 +63,21 @@
         <CheckBox x:Name="dsc_shihtach" Content="Отображать" HorizontalAlignment="Left" Margin="1568,181,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="hch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,221,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="azotch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,263,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="108,180,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="238,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,1.267"/>
-        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="360,180,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="ВКЛ" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top"/>
-        <Slider HorizontalAlignment="Left" Margin="238,224,0,0" VerticalAlignment="Top" Height="23" Width="118" Maximum="100" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
+        <CheckBox x:Name="a1check" Content="ВКЛ" HorizontalAlignment="Left" Margin="108,180,0,0" VerticalAlignment="Top" Checked="a1check_Checked"/>
+        <CheckBox x:Name="a2check" Content="ВКЛ" HorizontalAlignment="Left" Margin="238,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,1.267" Checked="a2check_Checked"/>
+        <CheckBox x:Name="a3check" Content="ВКЛ" HorizontalAlignment="Left" Margin="360,180,0,0" VerticalAlignment="Top" Checked="a3check_Checked"/>
+        <CheckBox x:Name="a4check" Content="ВКЛ" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top" Checked="a4check_Checked"/>
+        <Slider x:Name="a2slide" HorizontalAlignment="Left" Margin="238,224,0,0" VerticalAlignment="Top" Height="23" Width="118" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
         </Slider>
-        <Slider HorizontalAlignment="Left" Margin="360,224,0,0" VerticalAlignment="Top" Height="23" Width="118" Maximum="100" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
+        <Slider x:Name="a3slide" HorizontalAlignment="Left" Margin="360,224,0,0" VerticalAlignment="Top" Height="23" Width="118" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
         </Slider>
-        <Slider HorizontalAlignment="Left" Margin="483,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Maximum="100" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
+        <Slider x:Name="a4slide" HorizontalAlignment="Left" Margin="483,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
@@ -99,7 +99,7 @@
             </Calendar.BorderBrush>
         </Calendar>
         <CheckBox x:Name="datecheck" Content="Строить по дате" HorizontalAlignment="Left" Margin="1688,263,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="resg" HorizontalAlignment="Left" Margin="1772,341,0,0" VerticalAlignment="Top" Width="102" Height="20" Maximum="100" Minimum="50">
+        <Slider x:Name="resg" HorizontalAlignment="Left" Margin="1772,341,0,0" VerticalAlignment="Top" Width="102" Height="20" Maximum="100" Minimum="16">
             <Slider.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
