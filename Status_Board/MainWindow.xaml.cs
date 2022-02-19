@@ -10,6 +10,7 @@ using System.Linq;
 
 using System.Windows.Media;
 using System.Windows.Controls;
+using LiveCharts.Geared;
 
 namespace Status_Board
 {
@@ -18,7 +19,8 @@ namespace Status_Board
 
     {
         public static string connectString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Status_Board;Integrated Security=True";
-        readonly SqlConnection connection = new SqlConnection(connectString);
+        public static string connectString2 = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projects\\Status_Board\\Status_Board\\Status_Board\\DB.mdf;Integrated Security=True";
+        readonly SqlConnection connection = new SqlConnection(connectString2);
 
         static Random rand = new Random();
         static string caldate;
@@ -263,106 +265,96 @@ namespace Status_Board
                 Title = "Давление",
             }) ;
 
-            //Линия Компрессорный
-            LineSeries line_compress = new LineSeries
+            //Линия компрессоров
+            GLineSeries line_compress = new GLineSeries
             {
                 Title = "Компрессорный",
-                Values = compress,
+                Values = compress.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
 
             //Линия ЦТФС-печь
-            LineSeries line_ctfs_pech = new LineSeries
+            GLineSeries line_ctfs_pech = new GLineSeries
             {
                 Title = "ЦТФС-Печь",
-                Values = ctfs_pech,
+                Values = ctfs_pech.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ЦТФС-Пережим
-            LineSeries line_ctfs_perezhim = new LineSeries
+            GLineSeries line_ctfs_perezhim = new GLineSeries
             {
                 Title = "ЦТФС-Пережим",
-                Values = ctfs_perezhim,
+                Values = ctfs_perezhim.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ЦТФС-Резное
-            LineSeries line_ctfs_reznoe = new LineSeries
+            GLineSeries line_ctfs_reznoe = new GLineSeries
             {
                 Title = "ЦТФС-Резное",
-                Values = ctfs_reznoe,
+                Values = ctfs_reznoe.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Галерея
-            LineSeries line_dsc_gal = new LineSeries
+            GLineSeries line_dsc_gal = new GLineSeries
             {
                 Title = "ДСЦ-Галерея",
-                Values = dsc_gal,
+                Values = dsc_gal.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Рампа
-            LineSeries line_dsc_ramp = new LineSeries
+            GLineSeries line_dsc_ramp = new GLineSeries
             {
                 Title = "ДСЦ-Рампа",
-                Values = dsc_ramp,
+                Values = dsc_ramp.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
-            //Линия ДСЦ-Дробильный
-            LineSeries line_dsc_drob = new LineSeries
+            //Линия ДСЦ-Дробильня
+            GLineSeries line_dsc_drob = new GLineSeries
             {
                 Title = "ДСЦ-Дробильный",
-                Values = dsc_drob,
+                Values = dsc_drob.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Шихта
-            LineSeries line_dsc_shihta = new LineSeries
+            GLineSeries line_dsc_shihta = new GLineSeries
             {
                 Title = "ДСЦ-Шихта",
-                Values = dsc_shihta,
+                Values = dsc_shihta.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
-            //Линия Водородный
-            LineSeries line_h = new LineSeries
+            //Линия Водород
+            GLineSeries line_h = new GLineSeries
             {
                 Title = "Водородный",
-                Values = h,
+                Values = h.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
-            //Линия Азотный
-            LineSeries line_azot = new LineSeries
+            //Линия Азот
+            GLineSeries line_azot = new GLineSeries
             {
                 Title = "Азотный",
-                Values = azot,
+                Values = azot.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
 
             if (compressch.IsChecked.Equals(true))
