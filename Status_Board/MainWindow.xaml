@@ -6,18 +6,22 @@
         xmlns:local="clr-namespace:Status_Board"
         xmlns:Wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" x:Class="Status_Board.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920">
-    <Grid Margin="0">
+        Title="MainWindow" Height="1080" Width="1920" MinWidth="1621" MinHeight="776">
+    <Grid Margin="0" MinWidth="800" MinHeight="640">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Label x:Name="label1" Content="A1" HorizontalAlignment="Left" Margin="108,88,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="label2" HorizontalAlignment="Left" Margin="238,88,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="pressA1" Content="" HorizontalAlignment="Left" Margin="108,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TabIndex="2147483645"/>
         <Label x:Name="pressA2" HorizontalAlignment="Left" Margin="238,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TabIndex="2147483645"/>
         <Label x:Name="label1_Copy" Content="Насос №" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Height="34" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label1_Copy2" Content="Давление" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dateA1" Content="" HorizontalAlignment="Left" Margin="1016,325,0,0" VerticalAlignment="Top" Height="36" Width="190" FontSize="14" Foreground="#FF080000" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0"/>
-        <Label x:Name="Время" Content="Время" HorizontalAlignment="Left" Margin="918,325,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="GraphButton" Content="График" HorizontalAlignment="Left" Margin="1214,325,0,0" VerticalAlignment="Top" Width="86" Height="37" Foreground="Black" BorderBrush="#FF14EBF5" OpacityMask="White" Background="#FF0CF2FD" FontSize="14" FontWeight="Bold" Click="GraphButton_Click"/>
-        <Wpf:CartesianChart x:Name="cartChart" Margin="10,0,10,10" Zoom="X" ZoomingSpeed="200" ScrollMode="X" IsManipulationEnabled="True" DisableAnimations="True" LegendLocation="Top" Hoverable="False" Focusable="True" Height="628" VerticalAlignment="Bottom">
+        <Label x:Name="dateA1" Content="" HorizontalAlignment="Right" Margin="0,325,706,0" VerticalAlignment="Top" Height="36" Width="190" FontSize="14" Foreground="#FF080000" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="Время" Content="Время" HorizontalAlignment="Right" Margin="0,325,908,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF22F3EA" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Button x:Name="GraphButton" Content="График" HorizontalAlignment="Right" Margin="0,325,612,0" VerticalAlignment="Top" Width="86" Height="37" Foreground="Black" BorderBrush="#FF14EBF5" OpacityMask="White" Background="#FF0CF2FD" FontSize="14" FontWeight="Bold" Click="GraphButton_Click" Grid.Column="1"/>
+        <Wpf:CartesianChart x:Name="cartChart" Margin="10,411,10,10" Zoom="X" ZoomingSpeed="200" ScrollMode="X" IsManipulationEnabled="True" DisableAnimations="True" LegendLocation="Top" Hoverable="False" Focusable="True" Grid.ColumnSpan="2">
             <Wpf:CartesianChart.ChartLegend>
                 <Wpf:DefaultLegend/>
             </Wpf:CartesianChart.ChartLegend>
@@ -27,46 +31,46 @@
         <Label x:Name="label2_Copy1" HorizontalAlignment="Left" Margin="483,88,0,0" VerticalAlignment="Top" Height="34" Width="81" FontSize="14" Foreground="#FF080000" BorderBrush="Black" BorderThickness="5,0,0,0" FontWeight="Bold" Content="A4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="pressA4" HorizontalAlignment="Left" Margin="483,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TabIndex="2147483645"/>
         <Label Content="КОМПРЕССОРЫ" HorizontalAlignment="Left" Margin="51,11,0,0" VerticalAlignment="Top" Width="351" Height="69" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label Content="ЦЕХА" HorizontalAlignment="Left" Margin="1170,12,0,0" VerticalAlignment="Top" Width="351" Height="68" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Label x:Name="compressc" Content="" HorizontalAlignment="Left" Margin="1084,87,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy1" Content="Компрессорный" HorizontalAlignment="Left" Margin="918,87,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="ctfs_perezhimc" Content="" HorizontalAlignment="Left" Margin="1084,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy3" Content="ЦТФС-Пережим" HorizontalAlignment="Left" Margin="918,129,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="ctfs_pechc" Content="" HorizontalAlignment="Left" Margin="1084,169,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy4" Content="ЦТФС-Печь" HorizontalAlignment="Left" Margin="918,169,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="ctfs_reznoec" Content="" HorizontalAlignment="Left" Margin="1084,211,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy5" Content="ЦТФС-Резное" HorizontalAlignment="Left" Margin="918,211,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dsc_galc" Content="" HorizontalAlignment="Left" Margin="1084,251,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy6" Content="ДСЦ-Галерея" HorizontalAlignment="Left" Margin="918,251,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dsc_rampc" Content="" HorizontalAlignment="Left" Margin="1482,87,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy7" Content="ДСЦ-Рампа" HorizontalAlignment="Left" Margin="1316,87,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dsc_drobc" Content="" HorizontalAlignment="Left" Margin="1482,129,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy8" Content="ДСЦ-Дробильный" HorizontalAlignment="Left" Margin="1316,129,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="dsc_shihtac" Content="" HorizontalAlignment="Left" Margin="1482,169,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy9" Content="ДСЦ-Шихта" HorizontalAlignment="Left" Margin="1316,169,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="hc" Content="" HorizontalAlignment="Left" Margin="1482,211,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy10" Content="Водородный" HorizontalAlignment="Left" Margin="1316,211,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
-        <Label x:Name="azotc" Content="" HorizontalAlignment="Left" Margin="1482,251,0,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0"/>
-        <Label x:Name="label1_Copy11" Content="Азотный" HorizontalAlignment="Left" Margin="1316,251,0,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
+        <Label Content="ЦЕХА" HorizontalAlignment="Left" Margin="521,12,0,0" VerticalAlignment="Top" Width="352" Height="68" FontSize="36" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label x:Name="compressc" Content="" HorizontalAlignment="Right" Margin="0,87,747,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy1" Content="Компрессорный" Margin="0,87,833,0" VerticalAlignment="Top" Height="36" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" Width="161" Grid.Column="1"/>
+        <Label x:Name="ctfs_perezhimc" Content="" HorizontalAlignment="Right" Margin="0,129,747,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy3" Content="ЦТФС-Пережим" HorizontalAlignment="Right" Margin="0,129,833,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="ctfs_pechc" Content="" HorizontalAlignment="Right" Margin="0,169,747,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy4" Content="ЦТФС-Печь" HorizontalAlignment="Right" Margin="0,169,833,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="ctfs_reznoec" Content="" HorizontalAlignment="Right" Margin="0,211,747,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy5" Content="ЦТФС-Резное" HorizontalAlignment="Right" Margin="0,211,833,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="dsc_galc" Content="" HorizontalAlignment="Right" Margin="0,251,747,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy6" Content="ДСЦ-Галерея" HorizontalAlignment="Right" Margin="0,251,833,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="dsc_rampc" Content="" HorizontalAlignment="Right" Margin="0,87,349,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy7" Content="ДСЦ-Рампа" HorizontalAlignment="Right" Margin="0,87,435,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="dsc_drobc" Content="" HorizontalAlignment="Right" Margin="0,129,349,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy8" Content="ДСЦ-Дробильный" HorizontalAlignment="Right" Margin="0,129,435,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="dsc_shihtac" Content="" HorizontalAlignment="Right" Margin="0,169,349,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy9" Content="ДСЦ-Шихта" HorizontalAlignment="Right" Margin="0,169,435,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="hc" Content="" HorizontalAlignment="Right" Margin="0,211,349,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy10" Content="Водородный" HorizontalAlignment="Right" Margin="0,211,435,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
+        <Label x:Name="azotc" Content="" HorizontalAlignment="Right" Margin="0,251,349,0" VerticalAlignment="Top" Height="36" Width="81" FontSize="16" Foreground="#FF0151DE" BorderBrush="Black" BorderThickness="5,0,0,0" Grid.Column="1"/>
+        <Label x:Name="label1_Copy11" Content="Азотный" HorizontalAlignment="Right" Margin="0,251,435,0" VerticalAlignment="Top" Height="36" Width="161" Foreground="Black" BorderBrush="Black" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" Grid.Column="1"/>
         <Slider x:Name="a1slide" HorizontalAlignment="Left" Margin="113,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
         </Slider>
-        <CheckBox x:Name="compressch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,95,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ctfs_perezhimch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,137,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ctfs_pechch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,177,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ctfs_reznoech" Content="Отображать" HorizontalAlignment="Left" Margin="1170,219,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dsc_galch" Content="Отображать" HorizontalAlignment="Left" Margin="1170,259,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dsc_rampch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,99,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dsc_drobch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,139,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="dsc_shihtach" Content="Отображать" HorizontalAlignment="Left" Margin="1568,181,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="hch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,221,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="azotch" Content="Отображать" HorizontalAlignment="Left" Margin="1568,263,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="a1check" Content="ВКЛ" HorizontalAlignment="Left" Margin="108,180,0,0" VerticalAlignment="Top" Checked="a1check_Checked"/>
-        <CheckBox x:Name="a2check" Content="ВКЛ" HorizontalAlignment="Left" Margin="238,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,1.267" Checked="a2check_Checked"/>
-        <CheckBox x:Name="a3check" Content="ВКЛ" HorizontalAlignment="Left" Margin="360,180,0,0" VerticalAlignment="Top" Checked="a3check_Checked"/>
-        <CheckBox x:Name="a4check" Content="ВКЛ" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top" Checked="a4check_Checked"/>
+        <CheckBox x:Name="compressch" Content="Отображать" HorizontalAlignment="Right" Margin="0,95,655,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="ctfs_perezhimch" Content="Отображать" HorizontalAlignment="Right" Margin="0,137,655,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="ctfs_pechch" Content="Отображать" HorizontalAlignment="Right" Margin="0,177,655,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="ctfs_reznoech" Content="Отображать" HorizontalAlignment="Right" Margin="0,219,655,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="dsc_galch" Content="Отображать" HorizontalAlignment="Right" Margin="0,259,655,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="dsc_rampch" Content="Отображать" HorizontalAlignment="Right" Margin="0,99,257,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="dsc_drobch" Content="Отображать" HorizontalAlignment="Right" Margin="0,139,257,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="dsc_shihtach" Content="Отображать" HorizontalAlignment="Right" Margin="0,181,257,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="hch" Content="Отображать" HorizontalAlignment="Right" Margin="0,221,257,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="azotch" Content="Отображать" HorizontalAlignment="Right" Margin="0,263,257,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="87"/>
+        <CheckBox x:Name="a1check" Content="ВКЛ" HorizontalAlignment="Left" Margin="108,180,0,0" VerticalAlignment="Top" Checked="a1check_Checked" Height="15" Width="42"/>
+        <CheckBox x:Name="a2check" Content="ВКЛ" HorizontalAlignment="Left" Margin="238,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,1.267" Checked="a2check_Checked" Height="15" Width="42"/>
+        <CheckBox x:Name="a3check" Content="ВКЛ" HorizontalAlignment="Left" Margin="360,180,0,0" VerticalAlignment="Top" Checked="a3check_Checked" Height="15" Width="42"/>
+        <CheckBox x:Name="a4check" Content="ВКЛ" HorizontalAlignment="Left" Margin="483,180,0,0" VerticalAlignment="Top" Checked="a4check_Checked" Height="15" Width="42"/>
         <Slider x:Name="a2slide" HorizontalAlignment="Left" Margin="238,224,0,0" VerticalAlignment="Top" Height="23" Width="118" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
             <Slider.CacheMode>
                 <BitmapCache/>
@@ -77,18 +81,18 @@
                 <BitmapCache/>
             </Slider.CacheMode>
         </Slider>
-        <Slider x:Name="a4slide" HorizontalAlignment="Left" Margin="483,224,0,0" VerticalAlignment="Top" Height="23" Width="117" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B">
+        <Slider x:Name="a4slide" Margin="483,224,0,0" VerticalAlignment="Top" Height="23" Value="-1" BorderBrush="#FF040404" Foreground="#FFF31111" OpacityMask="#FFF70B0B" HorizontalAlignment="Left" Width="117">
             <Slider.CacheMode>
                 <BitmapCache/>
             </Slider.CacheMode>
         </Slider>
         <Label x:Name="label1_Copy12" Content="Работа" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="36" Width="86" Foreground="Black" BorderBrush="#FF1B11E6" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold"/>
         <Label x:Name="label1_Copy13" Content="Мощность" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Height="36" Width="98" Foreground="Black" BorderBrush="#FFE80E0E" BorderThickness="5,0,0,0" FontSize="14" FontWeight="Bold" OpacityMask="#FFF7F7F7"/>
-        <Button x:Name="Back" Content="Назад" HorizontalAlignment="Left" Margin="1316,343,0,0" VerticalAlignment="Top" Width="75" FontSize="11" Click="Back_Click" Background="#FF00F7F7" BorderBrush="{x:Null}" Foreground="Black"/>
-        <Button x:Name="Next" Content="Вперед" HorizontalAlignment="Left" Margin="1402,343,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,0.8" FontSize="11" Click="Next_Click" Background="#FF00F7F7" BorderBrush="{x:Null}" Foreground="Black"/>
-        <CheckBox x:Name="run" Content="Вкл автообновление графика" HorizontalAlignment="Left" Margin="1568,343,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="fullg" Content="Полный график" HorizontalAlignment="Left" Margin="1568,323,0,0" VerticalAlignment="Top"/>
-        <Calendar x:Name="calendar" HorizontalAlignment="Left" Margin="1688,86,0,0" VerticalAlignment="Top" SelectedDatesChanged="calendar_SelectedDatesChanged" Background="White" Foreground="#FF1D0505">
+        <Button x:Name="Back" Content="Назад" HorizontalAlignment="Right" Margin="0,343,521,0" VerticalAlignment="Top" Width="75" FontSize="11" Click="Back_Click" Background="#FF00F7F7" BorderBrush="{x:Null}" Foreground="Black" Grid.Column="1" Height="19"/>
+        <Button x:Name="Next" Content="Вперед" HorizontalAlignment="Right" Margin="0,343,435,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.04,0.8" FontSize="11" Click="Next_Click" Background="#FF00F7F7" BorderBrush="{x:Null}" Foreground="Black" Grid.Column="1" Height="19"/>
+        <CheckBox x:Name="run" Content="Вкл автообновление графика" HorizontalAlignment="Right" Margin="0,343,162,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="182"/>
+        <CheckBox x:Name="fullg" Content="Полный график" HorizontalAlignment="Right" Margin="0,323,237,0" VerticalAlignment="Top" Grid.Column="1" Height="15" Width="107"/>
+        <Calendar x:Name="calendar" HorizontalAlignment="Right" Margin="0,86,45,0" VerticalAlignment="Top" SelectedDatesChanged="calendar_SelectedDatesChanged" Background="White" Foreground="#FF1D0505" Grid.Column="1" Height="168" Width="179">
             <Calendar.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFA3AEB9" Offset="0"/>
@@ -98,8 +102,8 @@
                 </LinearGradientBrush>
             </Calendar.BorderBrush>
         </Calendar>
-        <CheckBox x:Name="datecheck" Content="Строить по дате" HorizontalAlignment="Left" Margin="1688,263,0,0" VerticalAlignment="Top"/>
-        <Slider x:Name="resg" HorizontalAlignment="Left" Margin="1772,341,0,0" VerticalAlignment="Top" Width="102" Height="20" Maximum="100" Minimum="16">
+        <CheckBox x:Name="datecheck" Content="Строить по дате" Margin="0,263,115,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="109" Grid.Column="1" Height="15"/>
+        <Slider x:Name="resg" HorizontalAlignment="Left" Margin="1123,341,-215,0" VerticalAlignment="Top" Width="102" Height="20" Maximum="100" Minimum="16" Grid.Column="1">
             <Slider.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
@@ -107,7 +111,7 @@
                 </LinearGradientBrush>
             </Slider.BorderBrush>
         </Slider>
-        <Label Content="Размер графика" HorizontalAlignment="Left" Margin="1772,321,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.577" Width="102" Height="16" Foreground="Black" VerticalContentAlignment="Center" Padding="0"/>
+        <Label Content="Размер графика" Margin="0,321,38,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.577" Height="16" Foreground="Black" VerticalContentAlignment="Center" Padding="0" HorizontalAlignment="Right" Width="102" Grid.Column="1"/>
 
 
 
