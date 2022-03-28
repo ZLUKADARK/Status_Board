@@ -18,7 +18,7 @@ namespace Status_Board
     public partial class MainWindow : Window
 
     {
-        public static string connectString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Ахмад\\Desktop\\Status_Board-next\\Status_Board\\DB.mdf;Integrated Security=True";
+        public static string connectString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Ахмад\\Desktop\\Status_Board\\Status_Board\\DB.mdf;Integrated Security=True";
         readonly SqlConnection connection = new SqlConnection(connectString);
 
         static Random rand = new Random();
