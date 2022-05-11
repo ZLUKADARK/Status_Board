@@ -10,7 +10,7 @@ using System.Linq;
 
 using System.Windows.Media;
 using System.Windows.Controls;
-using LiveCharts.Geared;
+
 
 namespace Status_Board
 {
@@ -18,7 +18,7 @@ namespace Status_Board
     public partial class MainWindow : Window
 
     {
-        public static string connectString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Ахмад\\Desktop\\Status_Board\\Status_Board\\DB.mdf;Integrated Security=True";
+        public static string connectString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Projects\\Status_Board\\Status_Board\\Status_Board\\DB.mdf;Integrated Security=True";
         readonly SqlConnection connection = new SqlConnection(connectString);
 
         static Random rand = new Random();
@@ -30,15 +30,14 @@ namespace Status_Board
             InitializeComponent();
             
             connection.Open();
-            
-            System.Windows.Threading.DispatcherTimer timer2 = new System.Windows.Threading.DispatcherTimer();
-            timer2.Tick += new EventHandler(switchCompressor);
-            timer2.Interval = new TimeSpan(0, 0, 1);
-            timer2.Start();
+            a1slide.IsEnabled = false;
+            a2slide.IsEnabled = false;
+            a3slide.IsEnabled = false;
+            a4slide.IsEnabled = false;
 
             System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += new EventHandler(timerTick);
-            timer.Tick += new EventHandler(timerChart);
+            timer.Tick += new EventHandler(TimerTick);
+            timer.Tick += new EventHandler(TimerChart);
             timer.Interval = new TimeSpan(0, 0, 5);
             timer.Start();
 
@@ -54,68 +53,30 @@ namespace Status_Board
         }
 
 
-        public void switchCompressor(object sender, EventArgs e)
-        {
-            if (a1check.IsChecked.Equals(false))
-            {
-                a1slide.Value = 0;
-                a1slide.IsEnabled = false;
-            }
-            else
-            {
-                a1slide.IsEnabled = true;
-            }
-            if (a2check.IsChecked.Equals(false))
-            {
-                a2slide.Value = 0;
-                a2slide.IsEnabled = false;
-            }
-            else
-            {
-                a2slide.IsEnabled = true;
-            }
-            if (a3check.IsChecked.Equals(false))
-            {
-                a3slide.Value = 0;
-                a3slide.IsEnabled = false;
-            }
-            else
-            {
-                a3slide.IsEnabled = true;
-            }
-            if (a4check.IsChecked.Equals(false))
-            {
-                a4slide.Value = 0;
-                a4slide.IsEnabled = false;
-            }
-            else
-            {
-                a4slide.IsEnabled = true;
-            }
-        }
 
-        public void timerTick(object sender, EventArgs e)
+
+        public void TimerTick(object sender, EventArgs e)
         {
             //Значение компрессоров
-            double A1 = a1slide.Value;
-            double A2 = a2slide.Value;
-            double A3 = a3slide.Value;
-            double A4 = a4slide.Value;
+            double A1 = Math.Round(a1slide.Value, 3);
+            double A2 = Math.Round(a2slide.Value, 3);
+            double A3 = Math.Round(a3slide.Value, 3);
+            double A4 = Math.Round(a4slide.Value, 3);
 
             
             Compressor(A1, A2, A3, A4);
 
             //Значение давления в цехах
-            double compress = Math.Round((A1 + A2 + A3 + A4), 4);
-            double azot = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double h = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double ctfs_pech = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double ctfs_perezhim = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double ctfs_reznoe = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double dsc_gal = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double dsc_ramp = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double dsc_drob = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
-            double dsc_shihta = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 2));
+            double compress = Math.Round((A1 + A2 + A3 + A4), 3);
+            double azot = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double h = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 4));
+            double ctfs_pech = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double ctfs_perezhim = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double ctfs_reznoe = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double dsc_gal = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double dsc_ramp = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double dsc_drob = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
+            double dsc_shihta = Math.Abs(Math.Round(compress - (rand.NextDouble() * (5)), 3));
 
             Departments(azot, h, compress, ctfs_pech, ctfs_perezhim, ctfs_reznoe, dsc_gal, dsc_ramp, dsc_drob, dsc_shihta);
 
@@ -126,16 +87,129 @@ namespace Status_Board
                                 double ctfs_reznoe, double dsc_gal, double dsc_ramp, double dsc_drob, double dsc_shihta) 
         {
             //Вывод на экран значений ЦЕХОВ
+
+            //----------------------------------------------------------------
             compressc.Content = compress;
+            if (compress > 7)
+            {
+                compressc.Foreground = new SolidColorBrush(Colors.Red);
+                compressc.Content += " !";
+            }
+            else
+            {
+                compressc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+            
+            //----------------------------------------------------------------
             ctfs_perezhimc.Content = ctfs_perezhim;
+            if (ctfs_perezhim > 7)
+            {
+                ctfs_perezhimc.Foreground = new SolidColorBrush(Colors.Red);
+                ctfs_perezhimc.Content += " !";
+            }
+            else
+            {
+                ctfs_perezhimc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             ctfs_pechc.Content = ctfs_pech;
+            if (ctfs_pech > 7)
+            {
+                ctfs_pechc.Foreground = new SolidColorBrush(Colors.Red);
+                ctfs_pechc.Content += " !";
+            }
+            else
+            {
+                ctfs_pechc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             ctfs_reznoec.Content = ctfs_reznoe;
+            if (ctfs_reznoe > 7)
+            {
+                ctfs_reznoec.Foreground = new SolidColorBrush(Colors.Red);
+                ctfs_reznoec.Content += " !";
+            }
+            else
+            {
+                ctfs_reznoec.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             dsc_galc.Content = dsc_gal;
+            if (dsc_gal > 7)
+            {
+                dsc_galc.Foreground = new SolidColorBrush(Colors.Red);
+                dsc_galc.Content += " !";
+            }
+            else
+            {
+                dsc_galc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             dsc_rampc.Content = dsc_ramp;
+            if (dsc_ramp > 7)
+            {
+                dsc_rampc.Foreground = new SolidColorBrush(Colors.Red);
+                dsc_rampc.Content += " !";
+            }
+            else
+            {
+                dsc_rampc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             dsc_drobc.Content = dsc_drob;
+            if (dsc_drob > 7)
+            {
+                dsc_drobc.Foreground = new SolidColorBrush(Colors.Red);
+                dsc_drobc.Content += " !";
+            }
+            else
+            {
+                dsc_drobc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             dsc_shihtac.Content = dsc_shihta;
+            if (dsc_shihta > 7)
+            {
+                dsc_shihtac.Foreground = new SolidColorBrush(Colors.Red);
+                dsc_shihtac.Content += " !";
+            }
+            else
+            {
+                dsc_shihtac.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             hc.Content = h;
+            if (h > 7)
+            {
+                hc.Foreground = new SolidColorBrush(Colors.Red);
+                hc.Content += " !";
+            }
+            else
+            {
+                hc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+            //----------------------------------------------------------------
             azotc.Content = azot;
+            if (azot > 7)
+            {
+                azotc.Foreground = new SolidColorBrush(Colors.Red);
+                azotc.Content += " !";
+            }
+            else
+            {
+                azotc.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+   
+
             //Запрос в таблицу с отделами
             string query = "INSERT Departments(DATETIME, Compress, CTFS_Perezhim, CTFS_Pech, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT) " 
                          + "VALUES(SYSDATETIME(), "
@@ -158,10 +232,44 @@ namespace Status_Board
         {
             //Вывод на экран значений компрессоров
             pressA1.Content = A1;
+            if(A1 > 7)
+            {
+                pressA1.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else 
+            { 
+                pressA1.Foreground = new SolidColorBrush(Colors.Blue); 
+            }
             pressA2.Content = A2;
+            if (A2 > 7)
+            {
+                pressA2.Foreground = new SolidColorBrush(Colors.Red);
+                
+            }
+            else
+            {
+                pressA2.Foreground = new SolidColorBrush(Colors.Blue);
+            }
             pressA3.Content = A3;
+            if (A3 > 7)
+            {
+                pressA3.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                pressA3.Foreground = new SolidColorBrush(Colors.Blue);
+            }
             pressA4.Content = A4;
-       
+            if (A4 > 7)
+            {
+                pressA4.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                pressA4.Foreground = new SolidColorBrush(Colors.Blue);
+            }
+
+
             //Строка запроса
             string query = "INSERT A1(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A1'," + Convert.ToString(A1).Replace(",", ".") + ")"+";" 
                          + "INSERT A2(DATETIME, NAME, PRESS) VALUES(SYSDATETIME(), 'A2'," + Convert.ToString(A2).Replace(",", ".") + ")"+";" 
@@ -203,32 +311,19 @@ namespace Status_Board
             ChartValues<double> dsc_shihta = new ChartValues<double>();
             ChartValues<double> h = new ChartValues<double>();
             ChartValues<double> azot = new ChartValues<double>();
-
+            SqlCommand com;
             //Получаем результаты времени
             if (datecheck.IsChecked.Equals(false))
             {
-                SqlCommand com = new SqlCommand(query1, connection);
-                SqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    dates.Add(Convert.ToString(reader.GetDateTime(0)));
-                    compress.Add((double)reader.GetDecimal(1));
-                    ctfs_pech.Add((double)reader.GetDecimal(2));
-                    ctfs_perezhim.Add((double)reader.GetDecimal(3));
-                    ctfs_reznoe.Add((double)reader.GetDecimal(4));
-                    dsc_gal.Add((double)reader.GetDecimal(5));
-                    dsc_ramp.Add((double)reader.GetDecimal(6));
-                    dsc_drob.Add((double)reader.GetDecimal(7));
-                    dsc_shihta.Add((double)reader.GetDecimal(8));
-                    h.Add((double)reader.GetDecimal(9));
-                    azot.Add((double)reader.GetDecimal(10));
-
-                }
-                reader.Close();
+                SqlCommand com1 = new SqlCommand(query1, connection);
+                com = com1;
             }
             else
             {
-                SqlCommand com = new SqlCommand(query2, connection);
+                SqlCommand com2 = new SqlCommand(query2, connection);
+                com = com2;
+            }
+
                 SqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
@@ -246,7 +341,7 @@ namespace Status_Board
 
                 }
                 reader.Close();
-            }
+
 
             SeriesCollection series = new SeriesCollection();
 
@@ -261,99 +356,109 @@ namespace Status_Board
 
             cartChart.AxisY.Add(new Axis
             {
-                Title = "Давление",
+                Title = "Давление в | кгс/см2|",
             }) ;
 
             //Линия компрессоров
-            GLineSeries line_compress = new GLineSeries
+            LineSeries line_compress = new LineSeries
             {
-                Title = "Компрессорный",
-                Values = compress.AsGearedValues().WithQuality(Quality.Low),
+                Title = "Компрессорная",
+                Values = compress,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
 
             //Линия ЦТФС-печь
-            GLineSeries line_ctfs_pech = new GLineSeries
+            LineSeries line_ctfs_pech = new LineSeries
             {
                 Title = "ЦТФС-Печь",
-                Values = ctfs_pech.AsGearedValues().WithQuality(Quality.Low),
+                Values = ctfs_pech,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
-            //Линия ЦТФС-Пережим
-            GLineSeries line_ctfs_perezhim = new GLineSeries
+            //Линия ЦТФС-Прежим
+            LineSeries line_ctfs_perezhim = new LineSeries
             {
-                Title = "ЦТФС-Пережим",
-                Values = ctfs_perezhim.AsGearedValues().WithQuality(Quality.Low),
+                Title = "ЦТФС-Прежим",
+                Values = ctfs_perezhim,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия ЦТФС-Резное
-            GLineSeries line_ctfs_reznoe = new GLineSeries
+            LineSeries line_ctfs_reznoe = new LineSeries
             {
                 Title = "ЦТФС-Резное",
-                Values = ctfs_reznoe.AsGearedValues().WithQuality(Quality.Low),
+                Values = ctfs_reznoe,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия ДСЦ-Галерея
-            GLineSeries line_dsc_gal = new GLineSeries
+            LineSeries line_dsc_gal = new LineSeries
             {
                 Title = "ДСЦ-Галерея",
-                Values = dsc_gal.AsGearedValues().WithQuality(Quality.Low),
+                Values = dsc_gal,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия ДСЦ-Рампа
-            GLineSeries line_dsc_ramp = new GLineSeries
+            LineSeries line_dsc_ramp = new LineSeries
             {
                 Title = "ДСЦ-Рампа",
-                Values = dsc_ramp.AsGearedValues().WithQuality(Quality.Low),
+                Values = dsc_ramp,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия ДСЦ-Дробильня
-            GLineSeries line_dsc_drob = new GLineSeries
+            LineSeries line_dsc_drob = new LineSeries
             {
-                Title = "ДСЦ-Дробильный",
-                Values = dsc_drob.AsGearedValues().WithQuality(Quality.Low),
+                Title = "ДСЦ-Дробильня",
+                Values = dsc_drob,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия ДСЦ-Шихта
-            GLineSeries line_dsc_shihta = new GLineSeries
+            LineSeries line_dsc_shihta = new LineSeries
             {
                 Title = "ДСЦ-Шихта",
-                Values = dsc_shihta.AsGearedValues().WithQuality(Quality.Low),
+                Values = dsc_shihta,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия Водород
-            GLineSeries line_h = new GLineSeries
+            LineSeries line_h = new LineSeries
             {
-                Title = "Водородный",
-                Values = h.AsGearedValues().WithQuality(Quality.Low),
+                Title = "Водород",
+                Values = h,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
             //Линия Азот
-            GLineSeries line_azot = new GLineSeries
+            LineSeries line_azot = new LineSeries
             {
-                Title = "Азотный",
-                Values = azot.AsGearedValues().WithQuality(Quality.Low),
+                Title = "Азот",
+                Values = azot,
                 Fill = Brushes.Transparent,
-                StrokeThickness = .5,
-
+                StrokeThickness = .4,
+                PointGeometrySize = 0,
+                DataLabels = false
             };
 
             if (compressch.IsChecked.Equals(true))
@@ -423,7 +528,7 @@ namespace Status_Board
             cartChart.AxisX[0].MaxValue += resg.Value;
         }
         //Таймер для постройки графика
-        private void timerChart(object sender, EventArgs e) 
+        private void TimerChart(object sender, EventArgs e) 
         {
             if (run.IsChecked.Equals(true))
             {
@@ -431,30 +536,66 @@ namespace Status_Board
             }
         }
         
-        public void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime selectedDate = calendar.SelectedDate.Value;
             caldate = selectedDate.ToString("yyyy-MM-dd");
         }
 
-        private void a1check_Checked(object sender, RoutedEventArgs e)
+        private void fullg_Checked(object sender, RoutedEventArgs e)
         {
-                
+            resg.IsEnabled = false;
+            resg.Value = 0;
         }
 
-        private void a2check_Checked(object sender, RoutedEventArgs e)
+        private void fullg_Unchhecked(object sender, RoutedEventArgs e)
         {
-
+            resg.IsEnabled = true;
+            
         }
 
-        private void a3check_Checked(object sender, RoutedEventArgs e)
+        private void A1check_Checked(object sender, RoutedEventArgs e)
         {
-
+            a1slide.IsEnabled = true;
+           
+        }
+        private void A1check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            a1slide.Value = 0;
+            a1slide.IsEnabled = false;
         }
 
-        private void a4check_Checked(object sender, RoutedEventArgs e)
+        private void A2check_Checked(object sender, RoutedEventArgs e)
         {
+            a2slide.IsEnabled = true;
+        }
+        private void A2check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            
+            a2slide.Value = 0;
+            a2slide.IsEnabled = false;
+        }
 
+        private void A3check_Checked(object sender, RoutedEventArgs e)
+        {
+            a3slide.IsEnabled = true;
+        }
+        private void A3check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            
+            a3slide.Value = 0;
+            a3slide.IsEnabled = false;
+        }
+        private void A4check_Checked(object sender, RoutedEventArgs e)
+        {
+            a4slide.IsEnabled = true;
+        }
+
+        private void A4check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            
+            a4slide.Value = 0;
+            a4slide.IsEnabled = false;
         }
     }
 }
