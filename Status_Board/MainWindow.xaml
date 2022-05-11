@@ -120,6 +120,8 @@
             </Slider.BorderBrush>
         </Slider>
         <Label Content="Размер графика" Margin="0,321,76,0" VerticalAlignment="Top" RenderTransformOrigin="1.711,0.577" Height="16" Foreground="Black" VerticalContentAlignment="Center" Padding="0" HorizontalAlignment="Right" Width="102" Grid.Column="1"/>
+        <Image x:Name="Warningi" HorizontalAlignment="Left" Height="74" Margin="439,284,0,0" VerticalAlignment="Top" Width="86" Source="Resources/warning.png" Visibility="Hidden"/>
+        <Label x:Name="Warningl" Content="Превышено давление в цехах" HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" Width="463" Height="74" FontSize="24" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFEE404C" Visibility="Hidden"/>
 
     </Grid>
 </Window>

@@ -10,7 +10,7 @@ using System.Linq;
 
 using System.Windows.Media;
 using System.Windows.Controls;
-
+using LiveCharts.Geared;
 
 namespace Status_Board
 {
@@ -86,6 +86,17 @@ namespace Status_Board
         public void Departments(double azot, double h, double compress, double ctfs_pech, double ctfs_perezhim, 
                                 double ctfs_reznoe, double dsc_gal, double dsc_ramp, double dsc_drob, double dsc_shihta) 
         {
+            if ((azot > 7) || (h >7) || (compress > 7) || (ctfs_pech > 7) || (ctfs_perezhim > 7) || (ctfs_reznoe > 7) || (dsc_gal > 7) || (dsc_ramp > 7) || (dsc_drob > 7) || (dsc_shihta > 7)) 
+            {
+                Warningi.Visibility = Visibility.Visible;
+                Warningl.Visibility = Visibility.Visible;
+            }
+            else 
+            {
+                Warningi.Visibility = Visibility.Hidden;
+                Warningl.Visibility = Visibility.Hidden;
+            }
+            
             //Вывод на экран значений ЦЕХОВ
 
             //----------------------------------------------------------------
@@ -94,6 +105,7 @@ namespace Status_Board
             {
                 compressc.Foreground = new SolidColorBrush(Colors.Red);
                 compressc.Content += " !";
+
             }
             else
             {
@@ -118,6 +130,7 @@ namespace Status_Board
             {
                 ctfs_pechc.Foreground = new SolidColorBrush(Colors.Red);
                 ctfs_pechc.Content += " !";
+
             }
             else
             {
@@ -130,6 +143,7 @@ namespace Status_Board
             {
                 ctfs_reznoec.Foreground = new SolidColorBrush(Colors.Red);
                 ctfs_reznoec.Content += " !";
+
             }
             else
             {
@@ -190,6 +204,7 @@ namespace Status_Board
             {
                 hc.Foreground = new SolidColorBrush(Colors.Red);
                 hc.Content += " !";
+
             }
             else
             {
@@ -202,16 +217,21 @@ namespace Status_Board
             {
                 azotc.Foreground = new SolidColorBrush(Colors.Red);
                 azotc.Content += " !";
+
             }
             else
             {
                 azotc.Foreground = new SolidColorBrush(Colors.Blue);
+
             }
 
-   
 
-            //Запрос в таблицу с отделами
-            string query = "INSERT Departments(DATETIME, Compress, CTFS_Perezhim, CTFS_Pech, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT) " 
+
+
+
+
+        //Запрос в таблицу с отделами
+        string query = "INSERT Departments(DATETIME, Compress, CTFS_Perezhim, CTFS_Pech, CTFS_Reznoe, DSC_Gal, DSC_Ramp, DSC_Drob, DSC_Shihta, H, AZOT) " 
                          + "VALUES(SYSDATETIME(), "
                          + Convert.ToString(compress).Replace(",", ".") + "," 
                          + Convert.ToString(ctfs_perezhim).Replace(",", ".") + "," 
@@ -360,105 +380,96 @@ namespace Status_Board
             }) ;
 
             //Линия компрессоров
-            LineSeries line_compress = new LineSeries
+            //Линия компрессоров
+            GLineSeries line_compress = new GLineSeries
             {
-                Title = "Компрессорная",
-                Values = compress,
+                Title = "Компрессорный",
+                Values = compress.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
 
             //Линия ЦТФС-печь
-            LineSeries line_ctfs_pech = new LineSeries
+            GLineSeries line_ctfs_pech = new GLineSeries
             {
                 Title = "ЦТФС-Печь",
-                Values = ctfs_pech,
+                Values = ctfs_pech.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
-            //Линия ЦТФС-Прежим
-            LineSeries line_ctfs_perezhim = new LineSeries
+            //Линия ЦТФС-Пережим
+            GLineSeries line_ctfs_perezhim = new GLineSeries
             {
-                Title = "ЦТФС-Прежим",
-                Values = ctfs_perezhim,
+                Title = "ЦТФС-Пережим",
+                Values = ctfs_perezhim.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ЦТФС-Резное
-            LineSeries line_ctfs_reznoe = new LineSeries
+            GLineSeries line_ctfs_reznoe = new GLineSeries
             {
                 Title = "ЦТФС-Резное",
-                Values = ctfs_reznoe,
+                Values = ctfs_reznoe.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Галерея
-            LineSeries line_dsc_gal = new LineSeries
+            GLineSeries line_dsc_gal = new GLineSeries
             {
                 Title = "ДСЦ-Галерея",
-                Values = dsc_gal,
+                Values = dsc_gal.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Рампа
-            LineSeries line_dsc_ramp = new LineSeries
+            GLineSeries line_dsc_ramp = new GLineSeries
             {
                 Title = "ДСЦ-Рампа",
-                Values = dsc_ramp,
+                Values = dsc_ramp.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Дробильня
-            LineSeries line_dsc_drob = new LineSeries
+            GLineSeries line_dsc_drob = new GLineSeries
             {
-                Title = "ДСЦ-Дробильня",
-                Values = dsc_drob,
+                Title = "ДСЦ-Дробильный",
+                Values = dsc_drob.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия ДСЦ-Шихта
-            LineSeries line_dsc_shihta = new LineSeries
+            GLineSeries line_dsc_shihta = new GLineSeries
             {
                 Title = "ДСЦ-Шихта",
-                Values = dsc_shihta,
+                Values = dsc_shihta.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия Водород
-            LineSeries line_h = new LineSeries
+            GLineSeries line_h = new GLineSeries
             {
-                Title = "Водород",
-                Values = h,
+                Title = "Водородный",
+                Values = h.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
             //Линия Азот
-            LineSeries line_azot = new LineSeries
+            GLineSeries line_azot = new GLineSeries
             {
-                Title = "Азот",
-                Values = azot,
+                Title = "Азотный",
+                Values = azot.AsGearedValues().WithQuality(Quality.Low),
                 Fill = Brushes.Transparent,
-                StrokeThickness = .4,
-                PointGeometrySize = 0,
-                DataLabels = false
+                StrokeThickness = .5,
+
             };
 
             if (compressch.IsChecked.Equals(true))
